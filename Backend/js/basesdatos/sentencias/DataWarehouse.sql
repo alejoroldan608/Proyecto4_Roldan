@@ -100,11 +100,11 @@ CREATE TABLE IF NOT EXISTS contacts (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO contacts (full_name, email, cityId, companyId, position, fav_channel, interest)
-VALUES ("Carlos Lopez", "clopez@outlook.com", 1, 1, "Web Developer", "Email", "50"),
-("Rafael Orozco", "rorozco@outlook.com", 2, 2, "Web Developer", "Email", "25"),
-("Sergio Serna", "sserna@outlook.com", 3, 2, "Database Administrator", "Whatsapp", "50"),
-("Oscar Osorio", "oosorio@outlook.com", 3, 3, "Web Developer", "Email", "50"),
+VALUES ("Carlos Lopez", "clopez@outlook.com", 1, 2, "Web Developer", "Email", "50"),
+("Rafael Orozco", "rorozco@outlook.com", 3, 2, "Web Developer", "Email", "25"),
+("Sergio Serna", "sserna@outlook.com", 1, 3, "Database Administrator", "Whatsapp", "50"),
+("Oscar Osorio", "oosorio@outlook.com", 2, 3, "Web Developer", "Email", "50"),
 ("Armando calle", "acalle@outlook.com", 5, 4, "Data Analyst", "Email", "25"),
-("Laura Tobon", "ltobon@outlook.com", 2, 2, "Web Developer", "Call", "75"),
-("Claudia Serna", "cserna@outlook.com", 3, 2, "Architect of Solutions", "Email", "50"),
-("Sara Ocampo", "socampo@outlook.com", 3, 3, "Database Administrator", "Email", "0")
+("Laura Tobon", "ltobon@outlook.com", 2, 4, "Web Developer", "Call", "75"),
+("Claudia Serna", "cserna@outlook.com", 2, 2, "Architect of Solutions", "Email", "50"),
+("Sara Ocampo", "socampo@outlook.com", 1, 1, "Database Administrator", "Email", "0")

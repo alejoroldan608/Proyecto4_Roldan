@@ -1,10 +1,11 @@
 {
-  "name": "proyecto3_backend",
+  "name": "proyecto4_roldan",
   "version": "1.0.0",
-  "description": "",
+  "description": "Data Warehouse",
   "main": "index.js",
   "dependencies": {
     "express": "^4.17.1",
+    "helmet": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.6",
@@ -18,13 +19,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alejoroldan608/Proyecto3_Backend.git"
+    "url": "git+https://github.com/alejoroldan608/Proyecto4_Roldan.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alejoroldan608/Proyecto3_Backend/issues"
+    "url": "https://github.com/alejoroldan608/Proyecto4_Roldan/issues"
   },
-  "homepage": "https://github.com/alejoroldan608/Proyecto3_Backend#readme"
+  "homepage": "https://github.com/alejoroldan608/Proyecto4_Roldan#readme"
 }

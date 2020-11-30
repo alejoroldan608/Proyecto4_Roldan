@@ -1,6 +1,6 @@
 let jwt = sessionStorage.getItem("jwt");
-let rows = document.getElementById("rows"); // Table Body
-let liUser = document.getElementById("users"); // Users Button
+let rows = document.getElementById("rows"); 
+let liUser = document.getElementById("users");
 let count = document.getElementById("count");
 
 let multDelete = document.getElementById("multDelete");
@@ -15,6 +15,7 @@ let listRegions = document.getElementById("regions");
 let listCountries = document.getElementById("countries");
 let listCities = document.getElementById("cities");
 let title = document.getElementById("title");
+
 
 let add = document.getElementById("add");
 let btnAddCompany = document.getElementById("addCompany");
@@ -32,7 +33,7 @@ window.onload = function () {
         if (parseJwt(jwt).roleId == 2) {
             liUser.remove();
         }
-        fetch('http://localhost:5000/companies', {
+        fetch('http://localhost:3000/companias', {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
         }).then(res => {
@@ -91,7 +92,7 @@ deleteMultCompany.addEventListener('click', () => {
 function multDeleteCompanies(companies) {
     companies.forEach((e) => {
         if (jwt != null) {
-            fetch(`http://localhost:5000/companies/${e}`, {
+            fetch(`http://localhost:3000/companias/${e}`, {
                 method: 'DELETE',
                 headers:{"Content-Type":"application/json"}
             }).then(res => {
@@ -107,7 +108,8 @@ function multDeleteCompanies(companies) {
     location.href = location.href;
 }
 
-// Add Company //
+
+
 
 add.addEventListener('click', () => {
     name.value = "";
@@ -124,7 +126,7 @@ btnAddCompany.addEventListener('click', () => {
 });
 
 function findRegions(jwt) {
-    fetch('http://localhost:5000/rcc/regions/', {
+    fetch('http://localhost:3000/regciu/regiones/', {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
     }).then(res => {
@@ -155,7 +157,7 @@ listRegions.addEventListener('change', () => {
 
 function findCountries(regionId) {
     if (regionId != 0)
-    fetch(`http://localhost:5000/rcc/countries/${regionId}`, {
+    fetch(`http://localhost:3000/regciu/paises/${regionId}`, {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
     }).then(res => {
@@ -179,9 +181,10 @@ listCountries.addEventListener('change', () => {
     findCities(listCountries.value);
 });
 
+
 function findCities(countryId) {
     if (countryId != 0)
-    fetch(`http://localhost:5000/rcc/cities/${countryId}`, {
+    fetch(`http://localhost:3000/regciu/ciudades/${countryId}`, {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
     }).then(res => {
@@ -198,7 +201,7 @@ function findCities(countryId) {
 
 function addCompany(jwt) {
     if (jwt != null) {
-       fetch("http://localhost:5000/companies/create", {
+       fetch("http://localhost:3000/companias/crear", {
             method: 'POST',
             body: `{
                 "name": "${name.value}",
@@ -211,11 +214,11 @@ function addCompany(jwt) {
     }).then(res => {
         if (res.status == 200) {
             res.json().then(data => {
-                alert("Company Create Successful");
+                alert("Compañia creada");
                 location.href = location.href;
             });
         } else {
-            console.log("error");
+            console.log("error!");
             }
         }).catch(error => {
             console.log(error);
@@ -223,13 +226,12 @@ function addCompany(jwt) {
     } 
 }
 
-// Add Company //
 
-// Update Company //
+
 
 function getCompany(companyId) {
     if (jwt != null) {
-        fetch(`http://localhost:5000/companies/${companyId}`, {
+        fetch(`http://localhost:3000/companias/${companyId}`, {
              method: 'GET',
              headers: { "Authorization": "Bearer " + jwt }
      }).then(res => {
@@ -266,7 +268,7 @@ btnUpdateCompany.addEventListener('click', () => {
 
 function updateCompany(jwt, companyId) {
     if (jwt != null) {
-        fetch(`http://localhost:5000/companies/${companyId}`, {
+        fetch(`http://localhost:3000/companias/${companyId}`, {
             method: 'PUT',
             body: `{
                 "name": "${name.value}",
@@ -278,7 +280,7 @@ function updateCompany(jwt, companyId) {
             headers:{"Content-Type":"application/json"}
         }).then(res => {
             if (res.status == 200) {
-                alert("Company Updated Successful");
+                alert("Compañia actualizada");
                 location.href = location.href;
             } else {
                 console.log("error");
@@ -288,10 +290,6 @@ function updateCompany(jwt, companyId) {
         }); 
     }
 }
-
-// Update Company //
-
-// Delete Company //
 
 let setIdCompanyDelete = 0;
 
@@ -306,7 +304,7 @@ btnDeleteCompany.addEventListener('click', ()=> {
 function deleteCompany(companyId) {
     let jwt = sessionStorage.getItem("jwt");
     if (jwt != null) {
-        fetch(`http://localhost:5000/companies/${companyId}`, {
+        fetch(`http://localhost:3000/companias/${companyId}`, {
             method: 'DELETE',
             headers:{"Content-Type":"application/json"}
         }).then(res => {

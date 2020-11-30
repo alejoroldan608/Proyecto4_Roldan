@@ -1,7 +1,7 @@
 let jwt = sessionStorage.getItem("jwt");
 
-let rows = document.getElementById("rows"); // Table Body
-let liUser = document.getElementById("users"); // Users Button
+let rows = document.getElementById("rows");
+let liUser = document.getElementById("users");
 let title = document.getElementById("title");
 
 let add = document.getElementById("add");
@@ -48,7 +48,7 @@ window.onload = function () {
         if (parseJwt(jwt).roleId == 2) {
             liUser.remove();
         }
-        fetch('http://localhost:5000/rcc/cities', {
+        fetch('http://localhost:3000/regciu/ciudades', {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
         }).then(res => {
@@ -70,7 +70,6 @@ window.onload = function () {
     }
 };
 
-// Button Icon //
 
 add.addEventListener('click', () => {
     modalBody.innerHTML = '';
@@ -84,11 +83,7 @@ del.addEventListener('click', () => {
     modalBodyDel.innerHTML = '';
 });
 
-// Button Icon //
 
-// Buttons Up //
-
-    // Add RCC //
 
 btnAddRegion.addEventListener('click', () => {
     modalBody.innerHTML = '';
@@ -146,9 +141,8 @@ btnAddCity.addEventListener('click', () => {
     getCountries(jwt);
 });
 
-    // Add RCC //
 
-    // Update RCC //
+
 
 btnUpRegion.addEventListener('click', () => {
     let jwt = sessionStorage.getItem("jwt");
@@ -192,6 +186,7 @@ btnUpCountry.addEventListener('click', () => {
                                     <option>Select...</option>
                                 </select>
                             </div>`;
+
     modalBodyUp.insertAdjacentHTML('beforeend', templateCountryUp);
     updateRegion.style.display = "none";
     updateCountry.style.display = "initial";
@@ -228,9 +223,7 @@ btnUpCity.addEventListener('click', () => {
     getCountries(jwt);
 });
 
-    // Update RCC //
 
-    // Delete RCC //
 
 btnDeleteRegion.addEventListener('click', () => {
     modalBodyDel.innerHTML = '';
@@ -266,6 +259,7 @@ btnDeleteCountry.addEventListener('click', () => {
     getCountries();
 });
     
+
 btnDeleteCity.addEventListener('click', () => {
     modalBodyDel.innerHTML = '';
     msgDel.innerHTML = "Delete Location";
@@ -283,13 +277,7 @@ btnDeleteCity.addEventListener('click', () => {
     getCities();
 });
 
-    // Delete RCC //
 
-// Buttons Up //
-
-// Buttons Bottom //
-
-    // Add RCC //
 
 createRegion.addEventListener('click', () => {
     addRegion();
@@ -303,9 +291,7 @@ createCity.addEventListener('click', () => {
     addCity();
 });
 
-    // Add RCC //
 
-    // Update RCC //
 
 updateRegion.addEventListener('click', () => {
     let regionId = document.getElementById('regions');
@@ -326,9 +312,7 @@ updateCity.addEventListener('click', () => {
     updCity(cityId, countryId);
 });
 
-    // Update RCC //
 
-    // Delete RCC //
 
 deleteRegion.addEventListener('click', () => {
     let regionId = document.getElementById('regions');
@@ -349,7 +333,8 @@ regionDelete.addEventListener('click', ()=> {
     delRegion(idRegionDelete);
 });
 
-////////////////////////////////
+
+
 
 deleteCountry.addEventListener('click', () => {
     let countryId = document.getElementById('countries');
@@ -369,7 +354,8 @@ countryDelete.addEventListener('click', () => {
     delCountry(idCountryDelete);
 });
 
-//////////////////////////////////////////
+
+
 
 deleteCity.addEventListener('click', () => {
     let cityId = document.getElementById('cities');
@@ -389,15 +375,12 @@ cityDelete.addEventListener('click', () => {
     delCity(idCityDelete);
 });
 
-    // Delete RCC //
 
-// Buttons Bottom //
 
-// Get RCC //
 
 function getRegions() {
     let listRegions = document.getElementById("regions");
-    fetch('http://localhost:5000/rcc/regions/', {
+    fetch('http://localhost:3000/regciu/regiones/', {
         method: 'GET',
         headers: { "Authorization": "Bearer " + jwt }
     }).then(res => {
@@ -414,7 +397,7 @@ function getRegions() {
 
 function getCountries() {
     let listCountries = document.getElementById("countries");
-    fetch('http://localhost:5000/rcc/countries/', {
+    fetch('http://localhost:3000/regciu/paises/', {
         method: 'GET',
         headers: { "Authorization": "Bearer " + jwt }
     }).then(res => {
@@ -431,7 +414,7 @@ function getCountries() {
 
 function getCities() {
     let listCities = document.getElementById("cities");
-    fetch('http://localhost:5000/rcc/cities', {
+    fetch('http://localhost:3000/regciu/ciudades', {
         method: 'GET',
         headers: { "Authorization": "Bearer " + jwt }
     }).then(res => {
@@ -446,12 +429,13 @@ function getCities() {
     });
 };
 
-// Get RCC //
+
+
 
 function addRegion() {
     let region = document.getElementById('region');
     if (jwt != null) {
-        fetch("http://localhost:5000/rcc/regions/create", {
+        fetch("http://localhost:3000/regciu/regiones/crear", {
             method: 'POST',
             body: `{"description": "${region.value}"}`,
             headers: { "Content-Type": "application/json" }
@@ -475,7 +459,7 @@ function addCountry() {
     let country = document.getElementById('country');
     let listRegions = document.getElementById('regions');
     if (jwt != null) {
-        fetch("http://localhost:5000/rcc/countries/create", {
+        fetch("http://localhost:3000/regciu/paises/crear", {
             method: 'POST',
             body: `{"description": "${country.value}", "regionId": ${listRegions.value}}`,
             headers: { "Content-Type": "application/json" }
@@ -498,7 +482,7 @@ function addCity() {
     let city = document.getElementById('city');
     let listCountries = document.getElementById('countries');
     if (jwt != null) {
-        fetch("http://localhost:5000/rcc/cities/create", {
+        fetch("http://localhost:3000/regciu/ciudades/crear", {
             method: 'POST',
             body: `{"description": "${city.value}", "countryId": ${listCountries.value}}`,
             headers: { "Content-Type": "application/json" }
@@ -521,7 +505,7 @@ function addCity() {
 function updRegion(regionId) {
     let region = document.getElementById('region');
     if (jwt != null) {
-        fetch(`http://localhost:5000/rcc/regions/${regionId.value}`, {
+        fetch(`http://localhost:3000/regciu/regiones/${regionId.value}`, {
             method: 'PUT',
             body: `{
                 "description": "${region.value}"
@@ -543,7 +527,7 @@ function updRegion(regionId) {
 function updCountry(countryId, regionId) {
     let country = document.getElementById('country');
     if (jwt != null) {
-        fetch(`http://localhost:5000/rcc/countries/${countryId.value}`, {
+        fetch(`http://localhost:3000/regciu/paises/${countryId.value}`, {
             method: 'PUT',
             body: `{"description": "${country.value}", "regionId": ${regionId.value}}`,
             headers: { "Content-Type": "application/json" }
@@ -563,7 +547,7 @@ function updCountry(countryId, regionId) {
 function updCity(cityId, countryId) {
     let city = document.getElementById('city');
     if (jwt != null) {
-        fetch(`http://localhost:5000/rcc/cities/${cityId.value}`, {
+        fetch(`http://localhost:3000/regciu/ciudades/${cityId.value}`, {
             method: 'PUT',
             body: `{"description": "${city.value}", "countryId": ${countryId.value}}`,
             headers: { "Content-Type": "application/json" }
@@ -582,7 +566,7 @@ function updCity(cityId, countryId) {
 
 function delRegion(regionId) {
     if (jwt != null) {
-        fetch(`http://localhost:5000/rcc/regions/${regionId}`, {
+        fetch(`http://localhost:3000/regciu/regiones/${regionId}`, {
             method: 'DELETE',
             headers: { "Content-Type": "application/json" }
         }).then(res => {
@@ -600,7 +584,7 @@ function delRegion(regionId) {
 
 function delCountry(countryId) {
     if (jwt != null) {
-        fetch(`http://localhost:5000/rcc/countries/${countryId}`, {
+        fetch(`http://localhost:3000/regciu/paises/${countryId}`, {
             method: 'DELETE',
             headers: { "Content-Type": "application/json" }
         }).then(res => {
@@ -618,7 +602,7 @@ function delCountry(countryId) {
 
 function delCity(cityId) {
     if (jwt != null) {
-        fetch(`http://localhost:5000/rcc/cities/${cityId}`, {
+        fetch(`http://localhost:3000/regciu/ciudades/${cityId}`, {
             method: 'DELETE',
             headers: { "Content-Type": "application/json" }
         }).then(res => {

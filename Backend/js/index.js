@@ -14,12 +14,15 @@ app.use(function(req, res, next) {
     next();
 });
 
-const rutausuario = require('./rutas/usuarios');
-const rutaproducto = require('./rutas/productos');
-const rutapedidos = require ('./rutas/pedidos')
-app.use('/api/usuarios', rutausuario);
-app.use('/api/productos', rutaproducto);
-app.use('/api/pedidos', rutapedidos);
+const rutacompanias = require ('./rutas/companias');
+const rutausuarios = require('./rutas/usuarios');
+const rutacontactos = require('./rutas/contactos');
+const rutaregciu = require ('./rutas/regciu')
+
+app.use('/companias', rutacompanias);
+app.use('/usuarios', rutausuarios);
+app.use('/contactos', rutacontactos);
+app.use('/regciu', rutaregciu);
 
 app.listen(port, () => {
     console.log('Servidor corriendo por el puerto '+ port);

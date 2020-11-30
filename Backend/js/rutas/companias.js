@@ -2,9 +2,9 @@ const router = require("express").Router();
 
 const conexion = require("../basesdatos/conexion/companias");
 
-const { validateToken } = require("../validaciones/contactos");
+const { validarToken } = require("../validaciones/validarcontacto");
 
-router.get("/", validateToken, async (req, res) => {
+router.get("/", validarToken, async (req, res) => {
     try {
       const companias = await conexion.EncontrarTodos();
       res.status(200).json(companias);

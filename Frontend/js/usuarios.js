@@ -1,6 +1,6 @@
 let jwt = sessionStorage.getItem("jwt");
-let rows = document.getElementById("rows"); // Table Body
-let liUser = document.getElementById("users"); // Users Button
+let rows = document.getElementById("rows");
+let liUser = document.getElementById("users");
 
 let username = document.getElementById("username");
 let name = document.getElementById("name");
@@ -27,7 +27,7 @@ window.onload = function () {
         if (parseJwt(jwt).roleId == 2) {
             liUser.remove();
         }
-        fetch('http://localhost:5000/users/', {
+        fetch('http://localhost:3000/usuarios/', {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
         }).then(res => {
@@ -72,7 +72,7 @@ btnAddUser.addEventListener('click', () => {
 
 function addUser(jwt) {
     if (jwt != null) {
-       fetch("http://localhost:5000/users/create", {
+       fetch("http://localhost:3000/usuarios/crear", {
             method: 'POST',
             body: `{
                 "username": "${username.value}",
@@ -101,7 +101,7 @@ function addUser(jwt) {
 
 function getUser(userId) {
     if (jwt != null) {
-        fetch(`http://localhost:5000/users/${userId}`, {
+        fetch(`http://localhost:3000/usuarios/${userId}`, {
              method: 'GET',
              headers: { "Authorization": "Bearer " + jwt }
      }).then(res => {
@@ -138,7 +138,7 @@ btnUpdateUser.addEventListener('click', () => {
 
 function updateUser(userId) {
     if (jwt != null) {
-        fetch(`http://localhost:5000/users/${userId}`, {
+        fetch(`http://localhost:3000/usuarios/${userId}`, {
              method: 'PUT',
              body: `{
                 "username": "${username.value}",
@@ -175,7 +175,7 @@ btnDeleteUser.addEventListener('click', ()=> {
 
 function deleteUser(userId) {
     if (jwt != null) {
-        fetch(`http://localhost:5000/users/${userId}`, {
+        fetch(`http://localhost:3000/usuarios/${userId}`, {
             method: 'DELETE',
             headers:{"Content-Type":"application/json"}
         }).then(res => {

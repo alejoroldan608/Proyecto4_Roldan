@@ -1,7 +1,28 @@
 .card {
     border: none;
+ 
+    background-color: gray;
+    
+}
+
+.login-card-description {
+    font-size: 25px;
+    color: #000;
+    font-weight: normal;
+    margin-bottom: 23px;
+    align-items: center;
+}
+
+.login-card .card-body {
+    padding: 85px 60px 60px;
+    background-color: beige;
 }
 
 .container {
     border: solid;
+}
+
+.brand-wrapper .logo {
+    height: 80px;
+    align-items: center;
 }

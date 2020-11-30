@@ -5,7 +5,7 @@ function start() {
 
     sessionStorage.clear();
 
-    fetch('http://localhost:5000/users/login', {
+    fetch('http://localhost:3000/usuarios/login', {
         method:'POST',
         body:`{"username":"${username.value}","pass":"${pass.value}"}`,
         headers:{"Content-Type":"application/json"}
@@ -13,13 +13,12 @@ function start() {
         if (res.status == 200) {
             res.json().then(data => {
                 sessionStorage.setItem("jwt", data);
-                //let user = parseJwt(data);
-                location.href = "../html/contacts.html";
+                location.href = "../html/contactos.html";
             });
         } else {
             username.value = "";
             pass.value = "";
-            resp.textContent = "User or Password Incorrect";
+            resp.textContent = "Credenciales incorrectas";
         }
     });
 }

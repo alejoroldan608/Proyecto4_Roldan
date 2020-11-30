@@ -70,10 +70,6 @@ router.delete("/regiones/:id", async (req, res) => {
 
 
 
-
-
-
-
 router.get("/Paises", async (req, res) => {
   try {
     let paises = await conexion.EncontrarTodosPaises();
@@ -130,8 +126,6 @@ router.delete("/paises/:id", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
-
-
 
 
 

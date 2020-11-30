@@ -1,8 +1,8 @@
 
 
 let jwt = sessionStorage.getItem("jwt");
-let rows = document.getElementById("rows"); // Table Body
-let liUser = document.getElementById("users"); // Users Button
+let rows = document.getElementById("rows");
+let liUser = document.getElementById("users");
 let count = document.getElementById("count");
 
 let multDelete = document.getElementById("multDelete");
@@ -33,10 +33,10 @@ setTimeout(() => {
 
 window.onload = function () {
     if (jwt != null) {
-        if (utils.parseJwt(jwt).roleId == 2) {
+        if (parseJwt(jwt).roleId == 2) {
             liUser.remove();
         }
-        fetch('http://localhost:5000/contacts/', {
+        fetch('http://localhost:3000/contactos/', {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
         }).then(res => {
@@ -85,7 +85,7 @@ function multDeleteContacts() {
     let itemSelect = document.querySelectorAll('input[type="checkbox"]:checked');
     itemSelect.forEach((e) => {
         if (jwt != null) {
-            fetch(`http://localhost:5000/contacts/${e.dataset.id}`, {
+            fetch(`http://localhost:3000/contactos/${e.dataset.id}`, {
                 method: 'DELETE',
                 headers:{"Content-Type":"application/json"}
             }).then(res => {
@@ -114,7 +114,7 @@ btnAddContact.addEventListener('click', () => {
 });
 
 function findCompanies(jwt) {
-    fetch('http://localhost:5000/companies/', {
+    fetch('http://localhost:3000/companias/', {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
     }).then(res => {
@@ -130,7 +130,7 @@ function findCompanies(jwt) {
 };
 
 function findRegions(jwt) {
-    fetch('http://localhost:5000/rcc/regions/', {
+    fetch('http://localhost:3000/regciu/regiones/', {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
     }).then(res => {
@@ -162,7 +162,7 @@ listRegions.addEventListener('change', () => {
 
 function findCountries(jwt, regionId) {
     if (regionId != 0)
-    fetch(`http://localhost:5000/rcc/countries/${regionId}`, {
+    fetch(`http://localhost:3000/regciu/paises/${regionId}`, {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
     }).then(res => {
@@ -188,7 +188,7 @@ listCountries.addEventListener('change', () => {
 
 function findCities(jwt, countryId) {
     if (countryId != 0)
-    fetch(`http://localhost:5000/rcc/cities/${countryId}`, {
+    fetch(`http://localhost:3000/regciu/ciudades/${countryId}`, {
             method: 'GET',
             headers: { "Authorization": "Bearer " + jwt }
     }).then(res => {
@@ -205,7 +205,7 @@ function findCities(jwt, countryId) {
 
 function addContact(jwt) {
     if (jwt != null) {
-       fetch("http://localhost:5000/contacts/add", {
+       fetch("http://localhost:3000/contactos/agregar", {
             method: 'POST',
             body: `{
                 "full_name": "${full_name.value}",
@@ -220,15 +220,15 @@ function addContact(jwt) {
     }).then(res => {
         if (res.status == 200) {
             res.json().then(data => {
-                alert("Contact Create Successful");
+                alert("Contacto creado");
                 location.href = location.href;
             });
         } else {
-            alert("Contact already exists!!! or data inputs incorrect!!!");
+            alert("Contacto ya existe o las entradas son incorrectas");
             }
         }).catch(error => {
             console.log(error);
-            alert("Contact already exists!!! or data inputs incorrect!!!");
+            alert("Contacto ya existe o las entradas son incorrectas");
         }); 
     } 
 }
@@ -236,7 +236,7 @@ function addContact(jwt) {
 function getContact(contactId) {
     let jwt = sessionStorage.getItem("jwt");
     if (jwt != null) {
-        fetch(`http://localhost:5000/contacts/${contactId}`, {
+        fetch(`http://localhost:3000/contactos/${contactId}`, {
              method: 'GET',
              headers: { "Authorization": "Bearer " + jwt }
      }).then(res => {
@@ -271,7 +271,7 @@ btnUpdateContact.addEventListener('click', () => {
 
 function updateContact(jwt, contactId) {
     if (jwt != null) {
-        fetch(`http://localhost:5000/contacts/${contactId}`, {
+        fetch(`http://localhost:3000/contactos/${contactId}`, {
              method: 'PUT',
              body: `{
                 "full_name": "${full_name.value}",
@@ -308,7 +308,7 @@ btnDeleteContact.addEventListener('click', () => {
 
 function deleteContact(contactId) {
     if (jwt != null) {
-        fetch(`http://localhost:5000/contacts/${contactId}`, {
+        fetch(`http://localhost:3000/contactos/${contactId}`, {
             method: 'DELETE',
             headers:{"Content-Type":"application/json"}
         }).then(res => {
