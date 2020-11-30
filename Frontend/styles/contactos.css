@@ -1,0 +1,61 @@
+.count {
+    width: 100%;
+    padding: 20px 105px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#multDelete {
+    display: none;
+}
+
+#main {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerUp {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 18px;
+    margin-bottom: 70px;
+}
+
+.btn {
+    border: 1px solid #1234f3;
+    padding: 4px;
+    color: #333;
+    background: white;
+    border-radius: 10px;
+    padding: 4px 15px;
+    margin-right: 8px;
+}
+
+.span2 {
+    padding: 4px;
+}
+
+#updateContact, #createRegion, #createCountry, #createCity, #updateRegion, #updateCountry, #updateCity, #deleteRegion, #deleteCountry, #deleteCity, #regionDelete, #countryDelete, #cityDelete {
+    display: none;
+}
+
+h1 {
+    margin-top: 70px;
+}
+
+h3 {
+    margin: 30px 0 50px;
+}
+
+#count {
+    background: #00aaff;
+    padding: 5px;
+}
+
+footer {
+    margin-top: 50px;
+}
